@@ -41,7 +41,29 @@ public class ProductManagerAndRepositoryTest {
     }
 
     @Test
-    public void checkSearchByMethod() {
+    public void checkSearchByMethod_NoneProductsFit() {
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Чай");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void checkSearchByMethod_FoundOneProduct() {
+        manager.add(item1);
+        manager.add(item2);
+        manager.add(item3);
+        Product[] expected = {item3};
+        Product[] actual = manager.searchBy("Смартфон");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void checkSearchByMethod_FoundSeveralProducts() {
         manager.add(item1);
         manager.add(item2);
         manager.add(item3);
